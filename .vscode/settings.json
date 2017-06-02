@@ -1,6 +1,14 @@
 {
-  "files.associations": {
-    "src/**/*.js": "javascriptreact"
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true
   },
-  "git.ignoreLimitWarning": true
+  "files.associations": {
+    "*.js": "javascriptreact"
+  },
+  "git.ignoreLimitWarning": true,
+  "eslint.autoFixOnSave": true
 }
