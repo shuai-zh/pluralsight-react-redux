@@ -8,6 +8,8 @@ import * as courseActions from '../../actions/courseActions';
 class CoursesPage extends React.Component {
     constructor(props, context) {
         super(props, context);
+
+        this.redirectToAddCoursePage = this.redirectToAddCoursePage.bind(this);
     }
 
     courseRow(course, index) {
@@ -16,11 +18,19 @@ class CoursesPage extends React.Component {
         );
     }
 
+    redirectToAddCoursePage() {
+        this.context.router.history.push('/course');
+    }
+
     render() {
         const { courses } = this.props;
         return (
             <div>
                 <h1>Courses</h1>
+                <input type="submit"
+                    value="Add Course"
+                    className="btn btn-primary"
+                    onClick={this.redirectToAddCoursePage} />
                 <CourseList courses={courses} />
             </div>
         );
@@ -30,6 +40,10 @@ class CoursesPage extends React.Component {
 CoursesPage.propTypes = {
     actions: PropTypes.object.isRequired,
     courses: PropTypes.array.isRequired
+};
+
+CoursesPage.contextTypes = {
+    router: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state, ownProps) {
