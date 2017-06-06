@@ -37,23 +37,21 @@ require.extensions['.jpg'] = function () {
 
 // Configure JSDOM and set global variables
 // to simulate a browser environment for tests.
-const jsdom = require("jsdom");
-const { JSDOM } = jsdom;
+const { JSDOM } = require("jsdom");
+const jsdom = new JSDOM('<!doctype html><html><body></body></html>');
+const { window } = jsdom;
 
-var exposedProperties = ['window', 'navigator', 'document'];
+function copyProps(src, target) {
+  const props = Object.getOwnPropertyNames(src)
+    .filter(prop => typeof target[prop] === 'undefined')
+    .map(prop => Object.getOwnPropertyDescriptor(src, prop));
+  Object.defineProperties(target, props);
+}
 
-const dom = new JSDOM('');
-global.document = dom.window.document;
-global.window = dom.window;
-Object.keys(document.defaultView).forEach((property) => {
-  if (typeof global[property] === 'undefined') {
-    exposedProperties.push(property);
-    global[property] = document.defaultView[property];
-  }
-});
-
+global.window = window;
+global.document = window.document;
 global.navigator = {
   userAgent: 'node.js'
 };
 
-documentRef = document; //eslint-disable-line no-undef
+copyProps(window, global); //eslint-disable-line no-undef
