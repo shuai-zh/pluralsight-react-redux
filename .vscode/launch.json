@@ -10,10 +10,11 @@
     "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
     "args": [
       "--reporter",
-      "progress",
+      "spec",
       "tools/testSetup.js",
-      "src/**/*.test.js",
-      "--colors"
+      "src/**/*.spec.js",
+      "--colors",
+      "--debug-brk"
     ],
     "internalConsoleOptions": "openOnSessionStart"
   }]

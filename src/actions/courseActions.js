@@ -21,7 +21,7 @@ export function loadCourses() {
     return dispatch => {
         dispatch(beginAjaxCall());
 
-        courseApi.getAllCourses()
+        return courseApi.getAllCourses()
             .then(courses => dispatch(loadCoursesSuccess(courses)))
             .catch(error => { throw error; });
     };
