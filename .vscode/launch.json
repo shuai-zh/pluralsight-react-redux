@@ -11,7 +11,7 @@
     "args": [
       "--reporter",
       "spec",
-      "tools/testSetup.js",
+      "buildScripts/testSetup.js",
       "src/**/*.spec.js",
       "--colors",
       "--debug-brk"

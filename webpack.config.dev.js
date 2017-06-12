@@ -1,5 +1,6 @@
 import webpack from 'webpack';
 import path from 'path';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 export default {
   devtool: 'inline-source-map',
@@ -19,7 +20,15 @@ export default {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin()
+    new webpack.NoEmitOnErrorsPlugin(),
+    // Create HTML file that includes reference to bundled JS.
+    new HtmlWebpackPlugin({
+      template: 'src/index.html',
+      inject: true,
+      // Properties you define here are available in index.html
+      // using htmlWebpackPlugin.options.varName
+      trackJSToken: 'INSERT YOUR TOKEN HERE'
+    })
   ],
   module: {
     rules: [{

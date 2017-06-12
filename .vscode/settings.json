@@ -9,6 +9,7 @@
   "files.associations": {
     "*.js": "javascriptreact"
   },
+  "editor.tabSize": 2,
   "git.ignoreLimitWarning": true,
   "eslint.autoFixOnSave": true
 }
