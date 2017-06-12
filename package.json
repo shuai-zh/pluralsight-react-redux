@@ -8,6 +8,7 @@
     "prestart": "babel-node buildScripts/startMessage.js",
     "start": "npm-run-all --parallel test:watch open:src lint:watch test:watch",
     "open:src": "babel-node buildScripts/srcServer.js",
+    "open:dist": "babel-node buildScripts/distServer.js",
     "lint": "esw webpack.config.* src buildScripts",
     "lint:watch": "npm run lint -- --watch",
     "test": "mocha --reporter spec --require buildScripts/testSetup.js \"./src/**/*.spec.js\"",
@@ -15,7 +16,7 @@
     "clean-dist": "rimraf ./dist && mkdir dist",
     "prebuild": "npm-run-all clean-dist test lint",
     "build": "babel-node buildScripts/build.js",
-    "postbuild": "babel-node buildScripts/distServer.js"
+    "start:dist": "npm-run-all build open:dist"
   },
   "dependencies": {
     "babel-polyfill": "^6.23.0",
