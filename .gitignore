@@ -99,4 +99,5 @@ typings/
 #dist folder
 dist
 
-# End of https://www.gitignore.io/api/web,node,macos,visualstudiocodeÏ
+.nyc_output
+coverage
