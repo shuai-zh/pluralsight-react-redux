@@ -8,11 +8,12 @@
     "prestart": "babel-node buildScripts/startMessage.js",
     "start": "npm-run-all --parallel test:watch open:src lint:watch test:watch",
     "open:src": "babel-node buildScripts/srcServer.js",
-    "open:dist": "babel-node buildScripts/distServer.js",
+    "open:dist": "cross-env NODE_ENV=production babel-node buildScripts/distServer.js",
     "lint": "esw webpack.config.* src buildScripts",
     "lint:watch": "npm run lint -- --watch",
-    "test": "cross-env NODE_ENV=test nyc --reporter=lcov mocha \"./src/**/*.spec.js\"",
+    "test": "cross-env NODE_ENV=test nyc mocha \"./src/**/*.test.js\"",
     "test:watch": "npm run test -- --watch",
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
     "clean-dist": "rimraf ./dist && mkdir dist",
     "prebuild": "npm-run-all clean-dist test lint",
     "build": "babel-node buildScripts/build.js",
@@ -47,6 +48,7 @@
     "cheerio": "^1.0.0-rc.2",
     "colors": "^1.1.2",
     "compression": "^1.7.0",
+    "coveralls": "^2.13.1",
     "cross-env": "^5.0.1",
     "css-loader": "^0.28.4",
     "enzyme": "^2.9.1",
@@ -83,11 +85,18 @@
     "url": "https://github.com/shuai-zh/pluralsight-react-redux"
   },
   "nyc": {
-    "require": ["./buildScripts/testSetup.js"],
+    "require": [
+      "./buildScripts/testSetup.js"
+    ],
+    "include": [
+      "src/**/*.js"
+    ],
+    "reporter": [
+      "text",
+      "text-summary"
+    ],
     "sourceMap": false,
     "instrument": false,
-    "include": ["src/**/*.js"],
-    "exclude": ["src/**/*.spec.js"],
-    "reporter": ["lcov", "text-summary"]
+    "all": true
   }
 }
