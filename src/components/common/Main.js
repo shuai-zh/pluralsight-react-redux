@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Route, Switch } from "react-router-dom";
 import HomePage from "../home/HomePage";
-import CoursesPage from "../course/CoursesPage";
+import CoursesPage from "../course/CoursesPage"; // eslint-disable-line import/no-named-as-default
 import ManageCoursePage from "../course/ManageCoursePage"; // eslint-disable-line import/no-named-as-default
 import ManageAuthorPage from "../author/ManageAuthorPage"; // eslint-disable-line import/no-named-as-default
 import AuthorsPage from "../author/AuthorsPage";

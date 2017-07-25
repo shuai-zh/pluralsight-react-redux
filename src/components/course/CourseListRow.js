@@ -1,8 +1,9 @@
 import React from "react";
 import * as PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import CourseListRowDeleteButton from "./CourseListRowDeleteButton";
 
-const CourseListRow = ({ course }) => {
+const CourseListRow = ({ course, onCourseDelete }) => {
   return (
     <tr>
       <td>
@@ -24,12 +25,16 @@ const CourseListRow = ({ course }) => {
       <td>
         {course.length}
       </td>
+      <td>
+        <CourseListRowDeleteButton courseId={course.id} onCourseDelete={onCourseDelete} />
+      </td>
     </tr>
   );
 };
 
 CourseListRow.propTypes = {
-  course: PropTypes.object.isRequired
+  course: PropTypes.object.isRequired,
+  onCourseDelete: PropTypes.func.isRequired
 };
 
 export default CourseListRow;

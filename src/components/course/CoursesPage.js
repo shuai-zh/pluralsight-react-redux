@@ -2,26 +2,29 @@ import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import * as PropTypes from "prop-types";
 import { connect } from "react-redux";
+import * as toastr from "toastr";
 import CourseList from "./CourseList";
 import * as courseActions from "../../actions/courseActions";
 
-class CoursesPage extends Component {
+export class CoursesPage extends Component {
   constructor(props, context) {
     super(props, context);
 
     this.redirectToAddCoursePage = this.redirectToAddCoursePage.bind(this);
+    this.onCourseDelete = this.onCourseDelete.bind(this);
   }
-
-//   courseRow(course, index) {
-//     return (
-//       <div key={index}>
-//         {course.title}
-//       </div>
-//     );
-//   }
 
   redirectToAddCoursePage() {
     this.context.router.history.push("/course");
+  }
+
+  onCourseDelete(e) {
+    let courseId = e.target.dataset.courseId;
+    if (confirm(`Are you sure you want to delete course with id: ${courseId}?`)) {
+      this.props.actions
+        .deleteCourse(courseId)
+        .then(() => toastr.success(`Course with id: ${courseId} has been deleted.`));
+    }
   }
 
   render() {
@@ -30,7 +33,7 @@ class CoursesPage extends Component {
       <div>
         <h1>Courses</h1>
         <input type="submit" value="Add Course" className="btn btn-primary" onClick={this.redirectToAddCoursePage} />
-        <CourseList courses={courses} />
+        <CourseList courses={courses} onCourseDelete={this.onCourseDelete} />
       </div>
     );
   }
