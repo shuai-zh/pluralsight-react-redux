@@ -41,10 +41,12 @@ describe("Courses Page", () => {
     const wrapper = mount(<CoursesPage {...props} />, { context: context });
 
     const title = wrapper.find("h1").first();
-    expect(title.text()).toBe("Courses");
+    expect(title.text()).toContain("Courses");
     const addCourseButton = wrapper.find("input[type='submit']").first();
     expect(addCourseButton.prop("value")).toBe("Add Course");
     const courseList = wrapper.find("CourseList").first();
     expect(courseList).toExist();
+    const numberOfCoursesBadge = title.find("span.badge");
+    expect(numberOfCoursesBadge.text()).toBe("2");
   });
 });

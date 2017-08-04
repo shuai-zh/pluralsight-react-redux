@@ -13,3 +13,7 @@ a.active {
 nav {
   padding-top: 20px;
 }
+
+.courses-page h1 span.badge {
+  margin-left: 5px;
+}
