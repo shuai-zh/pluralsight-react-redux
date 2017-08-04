@@ -18,12 +18,17 @@ class AuthorsPage extends Component {
   render() {
     const { authors } = this.props;
     return (
-      <div>
+      <div className="authors-page">
         <h1>Authors</h1>
+        <hr />
         <button className="btn btn-primary" onClick={this.redirectToAddAuthorPage}>
           Add Author
         </button>
-        <AuthorList authors={authors} />
+        {authors.length > 0
+          ? <AuthorList authors={authors} />
+          : <div className="alert alert-info" role="alert">
+              No authors available
+            </div>}
       </div>
     );
   }

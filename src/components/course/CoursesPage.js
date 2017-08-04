@@ -31,10 +31,16 @@ export class CoursesPage extends Component {
     const { courses } = this.props;
     return (
       <div className="courses-page">
-        <h1>Courses<span className="badge badge-default">{courses.length}</span></h1>
-        <hr/>
+        <h1>
+          Courses<span className="badge badge-default">{courses.length}</span>
+        </h1>
+        <hr />
         <input type="submit" value="Add Course" className="btn btn-primary" onClick={this.redirectToAddCoursePage} />
-        <CourseList courses={courses} onCourseDelete={this.onCourseDelete} />
+        {courses.length > 0
+          ? <CourseList courses={courses} onCourseDelete={this.onCourseDelete} />
+          : <div className="alert alert-info" role="alert">
+              No courses available
+            </div>}
       </div>
     );
   }
