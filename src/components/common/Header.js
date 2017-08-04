@@ -23,6 +23,7 @@ const Header = ({ loading }) =>
       </NavLink>
       {loading && <LoadingDots interval={100} dots={20} />}
     </nav>
+    <hr/>
   </header>;
 
 Header.propTypes = {

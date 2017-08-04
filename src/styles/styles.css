@@ -10,6 +10,10 @@ a.active {
   color: orange;
 }
 
+header hr {
+  margin-top: 5px;
+}
+
 nav {
   padding-top: 20px;
 }

@@ -7,6 +7,7 @@ import ManageCoursePage from "../course/ManageCoursePage"; // eslint-disable-lin
 import ManageAuthorPage from "../author/ManageAuthorPage"; // eslint-disable-line import/no-named-as-default
 import AuthorsPage from "../author/AuthorsPage";
 import AboutPage from "../about/AboutPage";
+import NotFoundPage from "./NotFoundPage";
 
 const Main = () => {
   return (
@@ -18,6 +19,7 @@ const Main = () => {
         <Route exact path="/authors" component={AuthorsPage} />
         <Route path="/author/:id?" component={ManageAuthorPage} />
         <Route exact path="/about" component={AboutPage} />
+        <Route component={NotFoundPage} />
       </Switch>
     </main>
   );
